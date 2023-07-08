@@ -15,15 +15,15 @@ return {
         sorting_strategy = "ascending",
         layout_config = {
           horizontal = { prompt_position = "top", preview_width = 0.55 },
-          vertical = { mirror = false },
+          vertical = { mirror = true },
           width = 0.87,
           height = 0.80,
-          preview_cutoff = 120,
+          preview_cutoff = 140,
         },
         mappings = {
           i = {
-            ["<C-j>"] = actions.cycle_history_next,
-            ["<C-k>"] = actions.cycle_history_prev,
+            ["<C-j>"] = actions.preview_scrolling_down,
+            ["<C-k>"] = actions.preview_scrolling_up,
             ["<C-n>"] = actions.move_selection_next,
             ["<C-p>"] = actions.move_selection_previous,
           },

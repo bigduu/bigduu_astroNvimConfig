@@ -53,6 +53,14 @@ return {
     servers = {
       -- "pyright"
     },
+    mappings = {
+      n = {
+        ["<leader>la"] = {
+          function() require("actions-preview").code_actions() end,
+          desc = "Code action",
+        },
+      },
+    },
     config = {
       rust_analyzer = {
         settings = {

@@ -30,9 +30,10 @@ return {
     },
     ["<leader>b"] = { name = "Buffers" },
     ["<leader>w"] = { "<cmd>Neotree toggle<cr>", desc = "Toggle Explorer" },
-    ["gl"] = { "<cmd>Lspsaga show_cursor_diagnostics<CR>", desc = "show_cursor_diagnostics" },
-    ["gp"] = { "<cmd>Lspsaga diagnostic_jump_prev<CR>", desc = "show_cursor_diagnostics" },
-    ["gn"] = { "<cmd>Lspsaga diagnostic_jump_next<CR>", desc = "show_cursor_diagnostics" },
+    ["<leader>la"] = {
+      function() require("actions-preview").code_actions() end,
+      desc = "Code action",
+    },
     ["L"] = {
       function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
       desc = "Next buffer",
@@ -43,7 +44,7 @@ return {
     },
   },
   i = {
-    ["<ctrl><space>"] = { "<cmd>lua vim.lsp.buf.code_action()<CR>", desc = "Code action" },
+    -- ["<ctrl><space>"] = { "<cmd>lua vim.lsp.buf.code_action()<CR>", desc = "Code action" },
   },
   t = {
     -- setting a mapping to false will disable it
