@@ -3,9 +3,15 @@
 -- Please use this mappings table to set keyboard mapping since this is the
 -- lower level configuration and more robust one. (which-key will
 -- automatically pick-up stored data by this setting.)
+--
+local utils = require "astronvim.utils"
+local get_icon = utils.get_icon
+local e = { desc = get_icon("Edit", 1, true) .. "Edit" }
 return {
   -- first key is the mode
   n = {
+    ["<leader>e"] = e,
+    ["<leader>ez"] = { "<cmd>ZenMode<CR>", desc = "ZenMode" },
     ["<leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
     ["<leader>bD"] = {
       function()
@@ -15,9 +21,15 @@ return {
       end,
       desc = "Pick to close",
     },
+    ["<leader>bx"] = {
+      function()
+        local current = vim.api.nvim_get_current_buf()
+        require("astronvim.utils.buffer").close(current)
+      end,
+      desc = "Close current buffer",
+    },
     ["<leader>b"] = { name = "Buffers" },
     ["<leader>w"] = { "<cmd>Neotree toggle<cr>", desc = "Toggle Explorer" },
-    ["<leader>e"] = false,
     ["gl"] = { "<cmd>Lspsaga show_cursor_diagnostics<CR>", desc = "show_cursor_diagnostics" },
     ["gp"] = { "<cmd>Lspsaga diagnostic_jump_prev<CR>", desc = "show_cursor_diagnostics" },
     ["gn"] = { "<cmd>Lspsaga diagnostic_jump_next<CR>", desc = "show_cursor_diagnostics" },
