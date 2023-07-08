@@ -14,11 +14,12 @@ return {
       --   ["remote_name"] = "https://remote_url.come/repo.git", -- full remote url
       --   ["remote2"] = "github_user/repo", -- GitHub user/repo shortcut,
       --   ["remote3"] = "github_user", -- GitHub user assume AstroNvim fork
+      ["bigduu"] = "https://github.com/bigduu/bigduu_astroNvimConfig.git",
     },
   },
 
   -- Set colorscheme to use
-  colorscheme = "astrodark",
+  colorscheme = "tokyonight",
 
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
@@ -51,6 +52,79 @@ return {
     -- enable servers that you already have installed without mason
     servers = {
       -- "pyright"
+    },
+    config = {
+      rust_analyzer = {
+        settings = {
+          ["rust-analyzer"] = {
+            procMacro = {
+              enable = true,
+              attributes = {
+                enable = true,
+              },
+            },
+            cargo = {
+              loadOutDirsFromCheck = true,
+            },
+            lens = {
+              enable = true,
+              references = {
+                adt = {
+                  enable = true,
+                },
+              },
+            },
+            -- enable clippy on save
+            checkOnSave = {
+              command = "clippy",
+            },
+            typing = {
+              autoClosingAngleBrackets = {
+                enable = true,
+              },
+            },
+            inlayHints = {
+              maxLength = 500,
+              minLines = 0,
+              bindingModeHints = {
+                enable = true,
+              },
+              closureReturnTypeHints = {
+                enable = true,
+              },
+              lifetimeElisionHints = {
+                enable = "always",
+                useParameterNames = true,
+              },
+              closureReturnTypeHint = {
+                enable = "always",
+              },
+              expressionAdjustmentHints = {
+                enable = "always",
+              },
+            },
+            lru = {
+              capacity = 500,
+            },
+            workspace = {
+              symbol = {
+                search = {
+                  limit = 5000,
+                },
+              },
+            },
+            diagnostics = {
+              experimental = {
+                enable = false,
+              },
+              disabled = {
+                "inactive-code",
+                "unresolved-proc-macro",
+              },
+            },
+          },
+        },
+      },
     },
   },
 
