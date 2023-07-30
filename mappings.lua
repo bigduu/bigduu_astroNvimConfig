@@ -30,10 +30,6 @@ return {
     },
     ["<leader>b"] = { name = "Buffers" },
     ["<leader>w"] = { "<cmd>Neotree toggle<cr>", desc = "Toggle Explorer" },
-    ["<leader>la"] = {
-      function() require("actions-preview").code_actions() end,
-      desc = "Code action",
-    },
     ["L"] = {
       function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
       desc = "Next buffer",
