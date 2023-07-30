@@ -18,10 +18,8 @@ return {
   { import = "astrocommunity.pack.bash" },
   { import = "astrocommunity.pack.terraform" },
   { import = "astrocommunity.scrolling.mini-animate" },
-  { import = "astrocommunity.completion.copilot-lua-cmp" },
   { import = "astrocommunity.utility.noice-nvim" },
   { import = "astrocommunity.colorscheme.catppuccin" },
-  { import = "astrocommunity.completion.copilot-lua-cmp" },
   { import = "astrocommunity.editing-support.zen-mode-nvim" },
   { import = "astrocommunity.diagnostics.lsp_lines-nvim" },
 }

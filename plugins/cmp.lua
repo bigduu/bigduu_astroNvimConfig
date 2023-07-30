@@ -9,6 +9,23 @@ return {
     config = require "plugins.configs.luasnip",
   },
   {
+    "zbirenbaum/copilot-cmp",
+    event = "LspAttach",
+    opts = function() require("copilot_cmp").setup() end,
+    fix_pairs = true,
+  },
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "LspAttach",
+    opts = function()
+      return {
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      }
+    end,
+  },
+  {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "saadparwaiz1/cmp_luasnip",
@@ -21,6 +38,7 @@ return {
       local cmp = require "cmp"
       local snip_status_ok, luasnip = pcall(require, "luasnip")
       local lspkind_status_ok, lspkind = pcall(require, "lspkind")
+
       local utils = require "astronvim.utils"
       if not snip_status_ok then return end
       local border_opts = {
