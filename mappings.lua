@@ -38,6 +38,10 @@ return {
       function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
       desc = "Previous buffer",
     },
+    ["<leader>v"] = {
+      function() vim.cmd.Neotree "reveal_force_cwd" end,
+      desc = "Localtion current file in Neotree",
+    },
   },
   i = {
     -- ["<ctrl><space>"] = { "<cmd>lua vim.lsp.buf.code_action()<CR>", desc = "Code action" },

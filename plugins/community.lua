@@ -16,6 +16,7 @@ return {
   { import = "astrocommunity.pack.proto" },
   { import = "astrocommunity.pack.docker" },
   { import = "astrocommunity.pack.bash" },
+  { import = "astrocommunity.pack.vue" },
   { import = "astrocommunity.pack.terraform" },
   { import = "astrocommunity.scrolling.mini-animate" },
   { import = "astrocommunity.utility.noice-nvim" },

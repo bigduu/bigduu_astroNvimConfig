@@ -126,12 +126,21 @@ return {
       filesystem = {
         follow_current_file = {
           enable = true,
+          leave_dirs_open = true,
         },
+        group_empty_dirs = true,
         hijack_netrw_behavior = "open_current",
         use_libuv_file_watcher = true,
         filtered_items = {
           hide_gitignored = false,
         },
+      },
+      buffers = {
+        follow_current_file = {
+          enable = true,
+          leave_dirs_open = true,
+        },
+        group_empty_dirs = true,
       },
       event_handlers = {
         {
