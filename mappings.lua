@@ -42,6 +42,10 @@ return {
       function() vim.cmd.Neotree "reveal_force_cwd" end,
       desc = "Localtion current file in Neotree",
     },
+    ["<leader>tt"] = {
+      "viw<cmd>Translate zh-CN<CR><esc>b",
+      desc = "Translate word under cursor",
+    },
   },
   i = {
     -- ["<ctrl><space>"] = { "<cmd>lua vim.lsp.buf.code_action()<CR>", desc = "Code action" },
