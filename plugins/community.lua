@@ -21,8 +21,6 @@ return {
   { import = "astrocommunity.pack.bash" },
   { import = "astrocommunity.pack.vue" },
   { import = "astrocommunity.pack.terraform" },
-  { import = "astrocommunity.project.project-nvim" },
-  { import = "astrocommunity.project.projectmgr-nvim" },
   { import = "astrocommunity.programming-language-support.csv-vim" },
   { import = "astrocommunity.scrolling.mini-animate" },
   { import = "astrocommunity.scrolling.nvim-scrollbar" },

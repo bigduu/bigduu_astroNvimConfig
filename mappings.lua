@@ -46,6 +46,16 @@ return {
       "viw<cmd>Translate zh-CN<CR><esc>b",
       desc = "Translate word under cursor",
     },
+    ["<leader>fp"] = {
+      "<cmd>Telescope projects<CR>",
+      desc = "Find project",
+    },
+  },
+  v = {
+    ["<leader>tt"] = {
+      "<cmd>Translate zh-CN<CR>",
+      desc = "Translate word under cursor",
+    },
   },
   i = {
     -- ["<ctrl><space>"] = { "<cmd>lua vim.lsp.buf.code_action()<CR>", desc = "Code action" },
