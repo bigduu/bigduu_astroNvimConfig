@@ -26,7 +26,11 @@ return {
     virtual_text = true,
     underline = true,
   },
-
+  plugins = {
+    notify = false,
+    rainbow = true,
+    vimwiki = true,
+  },
   lsp = {
     -- customize lsp formatting options
     formatting = {

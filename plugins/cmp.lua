@@ -8,22 +8,28 @@ return {
     opts = { store_selection_keys = "<C-x>" },
     config = require "plugins.configs.luasnip",
   },
+  -- {
+  --   "zbirenbaum/copilot-cmp",
+  --   event = "LspAttach",
+  --   opts = function() require("copilot_cmp").setup() end,
+  --   fix_pairs = true,
+  -- },
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   cmd = "Copilot",
+  --   event = "LspAttach",
+  --   opts = function()
+  --     return {
+  --       suggestion = { enabled = false },
+  --       panel = { enabled = false },
+  --     }
+  --   end,
+  -- },
   {
-    "zbirenbaum/copilot-cmp",
+    "tzachar/cmp-tabnine",
+    build = "./install.sh",
     event = "LspAttach",
-    opts = function() require("copilot_cmp").setup() end,
-    fix_pairs = true,
-  },
-  {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "LspAttach",
-    opts = function()
-      return {
-        suggestion = { enabled = false },
-        panel = { enabled = false },
-      }
-    end,
+    dependencies = "hrsh7th/nvim-cmp",
   },
   {
     "hrsh7th/nvim-cmp",
@@ -46,13 +52,27 @@ return {
         winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
       }
 
-      local function has_words_before()
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
-      end
-      local format = utils.plugin_opts "lspkind.nvim"
-      format.symbol_map.Copilot = "𐓙"
-      local formatF = lspkind.cmp_format(format)
+      local config = utils.plugin_opts "lspkind.nvim"
+      config.symbol_map.Copilot = "𐓙"
+      config.symbol_map.TabNine = "𐓙"
+      config.mode = "symbol_text"
+      local formatF = lspkind.cmp_format(config)
+      -- gray
+      vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true, fg = "#808080" })
+      -- blue
+      vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { bg = "NONE", fg = "#569CD6" })
+      vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { link = "CmpIntemAbbrMatch" })
+      -- light blue
+      vim.api.nvim_set_hl(0, "CmpItemKindVariable", { bg = "NONE", fg = "#9CDCFE" })
+      vim.api.nvim_set_hl(0, "CmpItemKindInterface", { link = "CmpItemKindVariable" })
+      vim.api.nvim_set_hl(0, "CmpItemKindText", { link = "CmpItemKindVariable" })
+      -- pink
+      vim.api.nvim_set_hl(0, "CmpItemKindFunction", { bg = "NONE", fg = "#C586C0" })
+      vim.api.nvim_set_hl(0, "CmpItemKindMethod", { link = "CmpItemKindFunction" })
+      -- front
+      vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { bg = "NONE", fg = "#D4D4D4" })
+      vim.api.nvim_set_hl(0, "CmpItemKindProperty", { link = "CmpItemKindKeyword" })
+      vim.api.nvim_set_hl(0, "CmpItemKindUnit", { link = "CmpItemKindKeyword" })
 
       return {
         enabled = function()
@@ -112,17 +132,6 @@ return {
           ["<C-y>"] = cmp.config.disable,
           ["<C-e>"] = cmp.mapping { i = cmp.mapping.abort(), c = cmp.mapping.close() },
           ["<CR>"] = cmp.mapping.confirm { select = false },
-          ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
-            elseif has_words_before() then
-              cmp.complete()
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
           ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
@@ -134,7 +143,8 @@ return {
           end, { "i", "s" }),
         },
         sources = cmp.config.sources {
-          { name = "copilot", priority = 1200 },
+          { name = "cmp_tabnine", priority = 1300 },
+          -- { name = "copilot", priority = 1200 },
           { name = "nvim_lsp", priority = 1000 },
           { name = "luasnip", priority = 750 },
           { name = "buffer", priority = 500 },
